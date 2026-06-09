@@ -183,6 +183,7 @@
     급식 작성
   </button>
 </div>
+      </div>
 
       <div class="empty-box">
         <h3>빈 공간</h3>
@@ -280,8 +281,8 @@
 
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-
-    function addPost() {
+function addPost()
+     {
       const title = document.getElementById('title').value;
       const content = document.getElementById('content').value;
       const password = document.getElementById('writePassword').value;
