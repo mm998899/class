@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>우리 반 사이트</title>
-
   <style>
     * {
       margin: 0;
@@ -244,6 +243,15 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
   <script>
+    function showPage(pageId) {
+
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.add('hidden');
+  });
+
+  document.getElementById(pageId).classList.remove('hidden');
+
+}
     // Firebase 설정 필요
     // 아래 firebaseConfig는 나중에 Firebase 사이트에서 받아서 넣기
    const firebaseConfig = {
