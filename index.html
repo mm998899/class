@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우리 반 사이트</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f2f4f8;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .top-box {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 20px;
+      min-height: 250px;
+    }
+
+    .photo-box {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .photo-box img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 3px solid #ddd;
+    }
+
+    .meal-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .meal-box textarea {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      resize: none;
+      font-size: 16px;
+    }
+
+    .empty-box {
+      background: white;
+      border-radius: 15px;
+      min-height: 150px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 10px;
+    }
+
+    .menu button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #4a90e2;
+      color: white;
+      font-size: 16px;
+    }
+
+    .page {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .calendar td,
+    .calendar th {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .post-input {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .post-input input,
+    .post-input textarea {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .post-input button {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    .post {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      background: #fafafa;
+    }
+
+    .delete-btn {
+      margin-top: 10px;
+      background: red;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu">
+    <button onclick="showPage('mainPage')">메인</button>
+    <button onclick="showPage('calendarPage')">달력</button>
+    <button onclick="showPage('boardPage')">게시판</button>
+  </div>
+
+  <!-- 메인 화면 -->
+  <div id="mainPage" class="page">
+    <div class="main-container">
+
+      <div class="top-box">
+        <div class="photo-box">
+          <!-- 단체사진 바꾸기 -->
+          <img src="https://via.placeholder.com/300x300.png?text=반+단체사진" alt="단체사진">
+          <p>우리 반 단체사진</p>
+        </div>
+
+        <div class="meal-box">
+  <h2>오늘의 급식</h2>
+
+  <textarea id="mealText" placeholder="급식을 적어주세요"></textarea>
+
+  <button onclick="saveMeal()">
+    급식 작성
+  </button>
+</div>
+
+      <div class="empty-box">
+        <h3>빈 공간</h3>
+        <p>여기에 원하는 내용을 나중에 추가 가능</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 달력 화면 -->
+  <div id="calendarPage" class="page hidden">
+    <h1>달력</h1>
+
+    <table class="calendar">
+      <tr>
+        <th>일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+      </tr>
+
+      <tr>
+        <td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
+      </tr>
+      <tr>
+        <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td>
+      </tr>
+      <tr>
+        <td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
+      </tr>
+      <tr>
+        <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
+      </tr>
+      <tr>
+        <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 게시판 화면 -->
+  <div id="boardPage" class="page hidden">
+    <h1>게시판</h1>
+
+    <div class="post-input">
+      <input type="text" id="title" placeholder="제목">
+      <textarea id="content" placeholder="내용"></textarea>
+      <input type="password" id="writePassword" placeholder="글 작성 비밀번호">
+      <button onclick="addPost()">글 올리기</button>
+    </div>
+
+    <div id="posts"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <script>
+    // Firebase 설정 필요
+    // 아래 firebaseConfig는 나중에 Firebase 사이트에서 받아서 넣기
+   const firebaseConfig = {
+  apiKey: "AIzaSyB8L6iJpyX1AW91pCdfDIepdY0Wyul-xdk",
+  authDomain: "class-board-12d03.firebaseapp.com",
+  databaseURL: "https://class-board-12d03-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "class-board-12d03",
+  storageBucket: "class-board-12d03.firebasestorage.app",
+  messagingSenderId: "639989459953",
+  appId: "1:639989459953:web:8c9aca42a33b8ceb363250"
+};
+
+    // 글 작성 비밀번호 (나중에 변경 가능)
+    const WRITE_PASSWORD = "1234";
+
+    // 삭제 비밀번호
+    const DELETE_PASSWORD = "3427";
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.add('hidden');
+      });
+
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function addPost() {
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+      const password = document.getElementById('writePassword').value;
+
+      if (password !== WRITE_PASSWORD) {
+        alert('비밀번호가 틀렸습니다.');
+        return;
+      }
+
+      if (title.trim() === '' || content.trim() === '') {
+        alert('제목과 내용을 입력하세요.');
+        return;
+      }
+
+      db.ref('posts').push({
+        title,
+        content,
+        date: Date.now()
+      });
+
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
+      document.getElementById('writePassword').value = '';
+
+      loadPosts();
+      
+    }
+// addPost 끝
+
+function saveMeal() {
+
+  const password = prompt("급식 수정 비밀번호 입력");
+
+  if (password !== "3427") {
+    alert("비밀번호가 틀렸습니다.");
+    return;
+  }
+
+  const meal = document.getElementById("mealText").value;
+
+  db.ref("meal").set({
+    text: meal,
+    updatedAt: Date.now()
+  });
+
+  alert("급식 저장 완료");
+}
+
+function loadMeal() {
+
+  db.ref("meal").on("value", snapshot => {
+
+    const data = snapshot.val();
+
+    if (data) {
+      document.getElementById("mealText").value = data.text || "";
+    }
+
+  });
+
+}
+
+loadMeal();
+    function deletePost(index) {
+      const password = prompt('삭제 비밀번호를 입력하세요');
+
+      if (password !== DELETE_PASSWORD) {
+        alert('삭제 비밀번호가 틀렸습니다.');
+        return;
+      }
+
+      db.ref('posts').once('value', snapshot => {
+        const data = snapshot.val();
+        const keys = Object.keys(data || {});
+
+        const targetKey = keys[index];
+
+        if (targetKey) {
+          db.ref('posts/' + targetKey).remove();
+        }
+      });
+    }
+
+    function loadPosts() {
+      const postsDiv = document.getElementById('posts');
+
+      db.ref('posts').on('value', snapshot => {
+
+        let posts = [];
+
+        snapshot.forEach(child => {
+          posts.push({
+            key: child.key,
+            ...child.val()
+          });
+        });
+
+        // 7일 지난 글 자동 삭제
+        const sevenDays = 7 * 24 * 60 * 60 * 1000;
+        const now = Date.now();
+
+        posts.forEach(post => {
+          if (now - post.date >= sevenDays) {
+            db.ref('posts/' + post.key).remove();
+          }
+        });
+
+        postsDiv.innerHTML = '';
+
+        posts.reverse().forEach((post, index) => {
+
+          const div = document.createElement('div');
+          div.className = 'post';
+
+          div.innerHTML = `
+            <h3>${post.title}</h3>
+            <p>${post.content}</p>
+            <button class="delete-btn" onclick="deletePost(${posts.length - 1 - index})">삭제</button>
+          `;
+
+          postsDiv.appendChild(div);
+        });
+      });
+    }
+
+    loadPosts();
+  </script>
+
+</body>
+</html>
